@@ -27,5 +27,11 @@ pipeline{
                   archiveArtifacts '**/*.war'
               } 
             }
+        stage("Deployment-AppServer"){
+            steps{
+              echo "hi"
+             sh label: '', script: 'scp /var/lib/jenkins/workspace/maven/webapp/target/webapp.war ubuntu@172.31.2.23:/opt/tomcat9/webapps/MVN.war'
+           }
+      }
             }
           }
