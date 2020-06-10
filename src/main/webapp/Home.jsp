@@ -15,7 +15,7 @@ out.println("Hello "+a);
   <br/>
   <br/>
   <br/><br/><br/><br/><br/>
-<a href="logout.jsp">Logout</a>
+<a href="Logout.jsp">Logout</a>
 </center> 
 </body> 
 </html>
