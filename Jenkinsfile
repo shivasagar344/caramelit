@@ -10,21 +10,12 @@ pipeline{
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "3.133.147.79:8081"
+        NEXUS_URL = "http://13.59.15.204:8081/"
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "release"
         // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "hari-nexus"
+        NEXUS_CREDENTIAL_ID = "new_nexus"
     }
-    stages {
-        stage("clone code") {
-            steps {
-                script {
-                    // Let's clone the source
-                    git 'https://github.com/chandrasekhar1897/MVN-SPRING-NEXUS.git';
-                }
-            }
-        }
  
     stages{
         stage("Checkout-SCM")
