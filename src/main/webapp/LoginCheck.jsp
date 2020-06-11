@@ -7,12 +7,11 @@
 <body>
 <% String username=request.getParameter("username"); 
 String password=request.getParameter("password"); 
-if((username.equals("harindra") && password.equals("1122")))
-{ 
+
+
 	session.setAttribute("username",username);
 	response.sendRedirect("Home.jsp");
- } 
-   else response.sendRedirect("Error.jsp");
+
 %> 
 </body> 
 </html>
