@@ -6,7 +6,7 @@
 
   <groupId>Scriptbees</groupId>
   <artifactId>app</artifactId>
-  <version>1.0</version>
+  <version></version>
   <packaging>war</packaging>
 
   <name>app Maven Webapp</name>
