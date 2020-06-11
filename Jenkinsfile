@@ -37,6 +37,7 @@ pipeline{
 
                 sh 'mvn clean package '
                   archiveArtifacts '**/*.war'
+                   mv app.war app-1.0.war
               } 
             }
         stage("Deployment-AppServer"){
