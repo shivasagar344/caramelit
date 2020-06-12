@@ -43,7 +43,7 @@ pipeline{
         stage("Deployment-AppServer"){
             steps{
               echo "hi"
-             sh label: '', script: 'scp /var/lib/jenkins/workspace/MVN-Project/target/app.war ubuntu@172.31.2.23:/opt/tomcat9/webapps/MVN.war'
+             sh label: '', script: 'scp /var/lib/jenkins/workspace/MVN-Project/target/app-1.0.war ubuntu@172.31.2.23:/opt/tomcat9/webapps/MVN.war'
            }
       }
         
