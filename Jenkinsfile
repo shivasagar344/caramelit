@@ -37,7 +37,7 @@ pipeline{
 
                 sh 'mvn clean package '
                   archiveArtifacts '**/*.war'
-                  sh 'mv app.war app-1.0.war'
+                  sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
               } 
             }
         stage("Deployment-AppServer"){
