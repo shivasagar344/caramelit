@@ -38,13 +38,13 @@ pipeline{
 
                 sh 'mvn clean package '
                   archiveArtifacts '**/*.war'
-                  sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
+                 // sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
               } 
             }
         stage("Deployment-AppServer"){
             steps{
               echo "hi"
-             sh label: '', script: 'scp /var/lib/jenkins/workspace/MVN-Project/target/app-1.0.war ubuntu@172.31.2.23:/opt/tomcat9/webapps/MVN.war'
+             sh label: '', script: 'scp /var/lib/jenkins/workspace/MVN-Project/target/app.war ubuntu@172.31.2.23:/opt/tomcat9/webapps/MVN.war'
            }
       }
         
