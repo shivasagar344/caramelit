@@ -15,6 +15,7 @@ pipeline{
         NEXUS_REPOSITORY = "release"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "new_nexus"
+        ARTIFACTID= "app.war"
     }
  
     stages{
@@ -74,7 +75,7 @@ pipeline{
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
-                                [artifactId: pom.artifactId,
+                                [artifactId: ARTIFACTID //pom.artifactId,
                                 classifier: '',
                                 file: artifactPath,
                                 type: pom.packaging],
