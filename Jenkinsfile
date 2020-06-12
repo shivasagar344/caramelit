@@ -15,7 +15,7 @@ pipeline{
         NEXUS_REPOSITORY = "harindra"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "Harindra_NEXUS"
-        ARTIFACTID= "app.war"
+       
     }
  
     stages{
@@ -70,7 +70,7 @@ pipeline{
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
-                          //  version: '1.0',
+                            version: '${Build_Number}',
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
