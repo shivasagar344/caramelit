@@ -12,6 +12,29 @@
   <name>app Maven Webapp</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
+  
+  <profile>
+        <id>static_build_number</id>
+        <activation>
+            <property>
+                <name>!env.BUILD_NUMBER</name>
+            </property>
+        </activation>
+        <properties>
+            <buildNumber>0</buildNumber>
+        </properties>
+    </profile>
+    <profile>
+        <id>dynamic_build_number</id>
+        <activation>
+            <property>
+                <name>env.BUILD_NUMBER</name>
+            </property>
+        </activation>
+        <properties>
+            <buildNumber>${env.BUILD_NUMBER}</buildNumber>
+        </properties>
+    </profile>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
