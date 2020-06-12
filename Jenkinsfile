@@ -12,10 +12,10 @@ pipeline{
         // Where your Nexus is running
         NEXUS_URL = "13.59.15.204:8081"
         // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "release"
+        NEXUS_REPOSITORY = "snapshots"
         // Jenkins credential id to authenticate to Nexus OSS
         NEXUS_CREDENTIAL_ID = "new_nexus"
-       // ARTIFACTID= "app.war"
+        ARTIFACTID= "app.war"
     }
  
     stages{
