@@ -63,26 +63,26 @@ pipeline{
                     // Assign to a boolean response verifying If the artifact name exists
                     artifactExists = fileExists artifactPath;
                     echo "harindra"
-                    if(artifactExists) {
+                     if(artifactExists) {
                         echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
                         nexusArtifactUploader(
                             nexusVersion: NEXUS_VERSION,
                             protocol: NEXUS_PROTOCOL,
                             nexusUrl: NEXUS_URL,
                             groupId: pom.groupId,
-                            version: pom.version,
+                            version: '${BUILD_NUMBER}',
                             repository: NEXUS_REPOSITORY,
                             credentialsId: NEXUS_CREDENTIAL_ID,
                             artifacts: [
                                 // Artifact generated such as .jar, .ear and .war files.
-                                [artifactId: ARTIFACTID, //pom.artifactId,
+                                [artifactId: pom.artifactId,
                                 classifier: '',
                                 file: artifactPath,
                                 type: pom.packaging],
                                 // Lets upload the pom.xml file for additional information for Transitive dependencies
-                                [artifactId: ARTIFACTID, //pom.artifactId, //nexus-pipeline-job,                 //
+                                [artifactId: pom.artifactId,
                                 classifier: '',
-                                file:  "target/${pom.artifactId}-${pom.version}.${pom.packaging}"  ,                                          //"pom.xml",
+                                file: "pom.xml",
                                 type: "pom"]
                             ]
                         );
