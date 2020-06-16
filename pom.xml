@@ -29,6 +29,32 @@
       <version>4.11</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.sonarsource.sonarqube</groupId>
+      <artifactId>sonar-ws</artifactId>
+      <version>6.7</version>
+    </dependency>
+
+	    <!-- https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin -->
+<dependency>
+    <groupId>org.jacoco</groupId>
+    <artifactId>jacoco-maven-plugin</artifactId>
+    <version>0.8.3</version>
+</dependency>
+	    
+	    <!-- https://mvnrepository.com/artifact/org.sonarsource.java/sonar-java-plugin -->
+<dependency>
+    <groupId>org.sonarsource.java</groupId>
+    <artifactId>sonar-java-plugin</artifactId>
+    <version>5.9.1.16423</version>
+    <scope>provided</scope>
+</dependency>
+	    <!-- https://mvnrepository.com/artifact/com.github.spotbugs/sonar-findbugs-plugin -->
+<dependency>
+    <groupId>com.github.spotbugs</groupId>
+    <artifactId>sonar-findbugs-plugin</artifactId>
+    <version>3.9.1</version>
+</dependency>
   </dependencies>
 
   <build>
