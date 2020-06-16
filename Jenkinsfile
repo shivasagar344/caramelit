@@ -45,7 +45,7 @@ pipeline{
                steps {
 
                 sh 'mvn clean package '
-                  archiveArtifacts '**/*.war'
+                  //archiveArtifacts '**/*.war'
                  // sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
               } 
           
