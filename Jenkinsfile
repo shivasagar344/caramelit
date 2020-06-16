@@ -32,6 +32,7 @@ pipeline{
                 userRemoteConfigs: [[credentialsId: 'github_credentials', 
                 url: 'https://github.com/HariReddy910/MVN-Project.git']]])
                 echo "Download finished form SCM"
+                sh 'mvn -v'
              
             }
       
