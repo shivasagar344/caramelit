@@ -22,6 +22,7 @@ pipeline{
         stage("Checkout-SCM")
         {
             steps{
+                script {
                 cleanWs()
                 checkout([$class: 'GitSCM',
                 branches: [[name: '*/master']], 
@@ -31,11 +32,12 @@ pipeline{
                 userRemoteConfigs: [[credentialsId: 'github_credentials', 
                 url: 'https://github.com/HariReddy910/MVN-Project.git']]])
                 echo "Download finished form SCM"
+                }
             }
         }
         post{
               failure{
-                  script {STAGE_FAILED = "checkout: failed to checkout the application.." }
+                  script { STAGE_FAILED = "checkout: failed to checkout the application.." }
               }
         }
                   
