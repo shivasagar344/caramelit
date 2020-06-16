@@ -33,6 +33,12 @@ pipeline{
                 echo "Download finished form SCM"
             }
         }
+        post{
+              failure{
+                  script {STAGE_FAILED = "checkout: failed to checkout the application.." }
+              }
+        }
+                  
              stage("Build "){
                steps {
 
@@ -41,13 +47,55 @@ pipeline{
                  // sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
               } 
             }
+         post{
+              failure{
+                  script {STAGE_FAILED = " Build : Failed to Build the application.." }
+              }
+        }
+        stage("Build "){
+               steps {
+
+             
+                  archiveArtifacts '**/*.war'
+                 // sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
+              } 
+            }
+         post{
+              failure{
+                  script {STAGE_FAILED = " archiveArtifacts :  archiveArtifacts failed.." }
+              }
+        }
+            stage('Sonarqube') {
+    environment {
+        scannerHome = tool 'SonarQube'
+    }
+    steps {
+        withSonarQubeEnv('sonarqube') {
+            sh "${scannerHome}/opt/sonar-scanner"
+        }
+        timeout(time: 10, unit: 'MINUTES') {
+            waitForQualityGate abortPipeline: true
+        }
+    }
+}
+         post{
+              failure{
+                  script {STAGE_FAILED = "Reports: failed to generate Code quality checks..." }
+              }
+        }
+        
+        
         stage("Deployment-AppServer"){
             steps{
               echo "hi"
              sh label: '', script: 'scp /var/lib/jenkins/workspace/MVN-Project/target/app.war ubuntu@172.31.2.23:/opt/tomcat9/webapps/MVN.war'
            }
       }
-        
+         post{
+              failure{
+                  script {STAGE_FAILED = "Deploy Application : failed on application." }
+              }
+        }
         
          stage("publish to nexus") {
             steps {
@@ -91,6 +139,11 @@ pipeline{
                     }
                 }
             }
+        }
+         post{
+              failure{
+                  script {STAGE_FAILED = "Nexus Publish : Failed on Nexus publish.." }
+              }
         }
             }
           }
