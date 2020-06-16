@@ -34,13 +34,13 @@ pipeline{
                 echo "Download finished form SCM"
                 }
             }
-        }
+        
         post{
               failure{
                   script { STAGE_FAILED = "checkout: failed to checkout the application.." }
               }
         }
-                  
+           }       
              stage("Build "){
                steps {
 
