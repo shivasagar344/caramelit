@@ -12,7 +12,7 @@ session.invalidate();
   <center>
 <h1>Logout was done successfully.
 </h1>    <center>
-    <a href="index.html">Back</a>    <center>
+    <a href="index.jsp">Back</a>    <center>
 </body> 
 </html>
 
