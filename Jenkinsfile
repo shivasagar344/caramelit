@@ -69,26 +69,7 @@ pipeline{
               }
         }
      }
-            stage('Sonarqube') {
-    environment {
-        scannerHome = tool 'sonar_scanner'
-    }
-    steps {
-        withSonarQubeEnv('SonarQube') {
-            sh "${scannerHome}"
-        }
-        timeout(time: 10, unit: 'MINUTES') {
-            waitForQualityGate abortPipeline: true
-        }
-    
-
-         post{
-              failure{
-                  script {STAGE_FAILED = "Reports: failed to generate Code quality checks..." }
-              }
-           }
-        }
- }       
+               
         stage("Deployment-AppServer"){
             steps{
               echo "hi"
