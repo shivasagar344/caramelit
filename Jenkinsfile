@@ -30,7 +30,7 @@ pipeline{
                 extensions: [[$class: 'CleanBeforeCheckout']], 
                 submoduleCfg: [], 
                 userRemoteConfigs: [[credentialsId: 'github_credentials', 
-                url: 'https://github.com/HariReddy910/My-Project.git']]])  
+                url: 'https://github.com/HariReddy910/MVN-Project.git']]])  
                 echo "Download finished form SCM"
              
             }
