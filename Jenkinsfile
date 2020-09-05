@@ -37,7 +37,7 @@ pipeline{
         stage("Deployment-AppServer"){
             steps{
               echo "hi"
-             sh label: '', script: 'scp /var/lib/jenkins/workspace/CARAMELIT/target/app.war ubuntu@172.31.41.179:/home/ubuntu/appserver/webapps/caramelit1.0.war'
+             sh label: '', script: 'scp /var/lib/jenkins/workspace/CARAMELIT/target/app.war ubuntu@172.31.41.179:/home/ubuntu/appserver/webapps/caramelit2.0.war'
            }
         }
            stage("publish to nexus") {
