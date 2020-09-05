@@ -79,7 +79,7 @@ pipeline{
         stage("Deployment-AppServer"){
             steps{
               echo "hi"
-             sh label: '', script: 'scp /var/lib/jenkins/workspace/Webpage/target/app.war ubuntu@172.31.41.179:/home/ubuntu/apache-tomcat-9.0.37/webapps1.3.war'
+             sh label: '', script: 'scp /var/lib/jenkins/workspace/Webpage/target/app.war ubuntu@172.31.41.179:/home/ubuntu/appserver/webapps/webapps1.3.war'
            }
        
           }
