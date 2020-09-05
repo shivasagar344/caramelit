@@ -14,7 +14,7 @@ pipeline{
         // Repository where we will upload the artifact
         NEXUS_REPOSITORY = "harindra"
         // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "harindra_nexus"
+        NEXUS_CREDENTIAL_ID = "harindra_nexus3"
        
     }
  
