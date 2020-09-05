@@ -1,4 +1,4 @@
-currentBuild.displayName="MVN-Project-#"+currentBuild.number
+currentBuild.displayName="WEBPAPP-#"+currentBuild.number
 pipeline{
     agent any
  //   options {
