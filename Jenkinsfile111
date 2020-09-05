@@ -1,6 +1,9 @@
-currentBuild.displayName="CARAMELIT-#"+currentBuild.number
+currentBuild.displayName="WEBPAPP-#"+currentBuild.number
 pipeline{
-    agent any 
+    agent any
+ //   options {
+   //   timeout(time: 1, unit: 'MINUTES') 
+    //     }
     environment {
         // This can be nexus3 or nexus2
         NEXUS_VERSION = "nexus3"
@@ -14,33 +17,74 @@ pipeline{
         NEXUS_CREDENTIAL_ID = "nexus_credentials"
        
     }
+ 
     stages{
-        stage("checkout-SCM"){
+        stage("Checkout-SCM")
+        {
             steps{
+              
+                cleanWs()
                 checkout([$class: 'GitSCM',
-                branches: [[name: '*/master']],
+                branches: [[name: '*/master']], 
                 doGenerateSubmoduleConfigurations: false,
-                extensions: [],
+                extensions: [[$class: 'CleanBeforeCheckout']], 
                 submoduleCfg: [], 
-                userRemoteConfigs: [[credentialsId: 'github_credentials',
+                userRemoteConfigs: [[credentialsId: 'github_credentials', 
                 url: 'https://github.com/HariReddy910/caramelIT.git']]])
                 echo "Download finished form SCM"
-            }
-        }
-        stage("Building"){
-            steps{
                 sh 'mvn -v'
-                sh label: '', script: 'mvn package'
-                archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+             
             }
-        }
+      
+     }       
+             
+               
+      //         stage('build && SonarQube analysis') {
+       //     steps {
+        //        withSonarQubeEnv('SonarQube') {
+                    // Optionally use a Maven environment you've configured already
+          //          withMaven(maven:'Maven 3.6.0') {
+          //              sh 'mvn clean package sonar:sonar'
+          //          }
+          //      }
+       //     } } 
+           //        stage("Quality Gate") {
+         //   steps {
+          //      timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+           //         waitForQualityGate abortPipeline: true
+           //     }
+        //    }
+      //  }
+        
+
+              //  sh 'mvn clean package '
+                  //archiveArtifacts '**/*.war'
+                 // sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
+             
+         
+        stage("archiveArtifacts "){
+               steps {
+
+             
+                  archiveArtifacts '**/*.war'
+                 // sh 'mv /var/lib/jenkins/workspace/MVN-Project/target/app.war app-1.0.war'
+              } 
+     }
+        
+    
+
+        
         stage("Deployment-AppServer"){
             steps{
               echo "hi"
              sh label: '', script: 'scp /var/lib/jenkins/workspace/CARAMELIT/target/app.war ubuntu@172.31.41.179:/home/ubuntu/appserver/webapps/caramelit.war'
            }
-        }
-           stage("publish to nexus") {
+       
+          }
+    
+         stage("publish to nexus") {
             steps {
                 script {
                     // Read POM xml file using 'readMavenPom' step , this step 'readMavenPom' is included in: https://plugins.jenkins.io/pipeline-utility-steps
@@ -85,5 +129,5 @@ pipeline{
         
      
             }
-    }
+          }
 }
