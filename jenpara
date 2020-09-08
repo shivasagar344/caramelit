@@ -1,12 +1,12 @@
-properties([pipelineTriggers([cron('* * * * *')])])
+//properties([pipelineTriggers([cron('* * * * *')])])
 
 properties([parameters([choice(choices: 'master\n dev\n test', description: 'select branch to build', name: 'branch')])])
 
 pipeline{
 agent any
-//triggers{
-  //   cron('* 2 * * *')
-	// }
+triggers{
+     cron('* * * * *')
+	 }
 stages{
      stage('scm checkout'){
       steps{
