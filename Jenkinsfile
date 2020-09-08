@@ -24,7 +24,7 @@ pipeline{
                 submoduleCfg: [], 
                 userRemoteConfigs: [[credentialsId: 'github_credentials',
                 url: 'https://github.com/HariReddy910/caramelIT.git']]])
-                echo "Download finished form SCM"
+           //     echo "Download finished form SCM"
             }
         }
         stage("Building"){
