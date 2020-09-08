@@ -1,4 +1,3 @@
-//properties([pipelineTriggers([cron('* * * * *')])])
 
 properties([parameters([choice(choices: 'master\n dev\n test', description: 'select branch to build', name: 'branch')])])
 
