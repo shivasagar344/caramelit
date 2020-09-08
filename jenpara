@@ -1,0 +1,18 @@
+properties([pipelineTriggers([cron('* * * * *')])])
+
+properties([parameters([choice(choices: 'master\n dev\n test', description: 'select branch to build', name: 'branch')])])
+
+pipeline{
+agent any
+triggers{
+     cron('* 2 * * *')
+	 }
+stages{
+     stage('scm checkout'){
+      steps{
+        echo "pulling chances from the branch ${params.branch}"
+       git url: 'https://github.com/HariReddy910/caramelIT.git', branch: "${params.branch}"
+       }
+     }
+   }
+   }
