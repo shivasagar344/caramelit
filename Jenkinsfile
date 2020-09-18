@@ -7,11 +7,11 @@ pipeline{
         // This can be http or https
         NEXUS_PROTOCOL = "http"
         // Where your Nexus is running
-        NEXUS_URL = "3.14.251.17:8081"
+        NEXUS_URL = "52.15.154.240:8081"
         // Repository where we will upload the artifact
-        NEXUS_REPOSITORY = "harindra"
+        NEXUS_REPOSITORY = "nexus-backup"
         // Jenkins credential id to authenticate to Nexus OSS
-        NEXUS_CREDENTIAL_ID = "nexus_credentials"
+        NEXUS_CREDENTIAL_ID = "nexus3_credentials"
        
     }
     stages{
@@ -24,14 +24,17 @@ pipeline{
                 submoduleCfg: [], 
                 userRemoteConfigs: [[credentialsId: 'github_credentials',
                 url: 'https://github.com/HariReddy910/caramelIT.git']]])
-           //     echo "Download finished form SCM"
+                echo "Download finished form SCM"
             }
         }
-        stage("Building"){
+        stage("Building & analyzing "){
             steps{
-                sh 'mvn -v'
-                sh label: '', script: 'mvn package'
-                archiveArtifacts artifacts: '**/*.war', followSymlinks: false
+             
+              withSonarQubeEnv('SonarQube') {
+                sh 'mvn clean package sonar:sonar'
+                  archiveArtifacts '**/*.war'
+              } 
+         
             }
         }
         stage("Deployment-AppServer"){
